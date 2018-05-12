@@ -1,9 +1,7 @@
 let squares = document.querySelectorAll('.square');
 let nodes = Array.prototype.slice.call(squares);
 let players = document.querySelectorAll('.player');
-let num;
-let count = 0;
-let arr = [];
+let count = 30;
 let brown = 1,
     red = 2,
     blue = 3,
@@ -70,8 +68,11 @@ let check = (color) => {
 }
 
 let paintBoard = () => {
-    squares.forEach(square => {
-
+    squares.forEach((square,i) => {
+        square.classList.remove('player');
+        squares[0].classList.add('player');
+        count = 30;
+        document.querySelector('.count').innerHTML = '30';
         num = diceroll();
         switch (num) {
             case 1:
@@ -115,7 +116,10 @@ document.getElementById('greenButton').addEventListener('click', () => {
             square.classList.add('green');
         }
     });
+    count--;
     document.querySelector('.count').innerHTML--;
+    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
+    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";
 })
 
 document.getElementById('blueButton').addEventListener('click', () => {
@@ -126,7 +130,10 @@ document.getElementById('blueButton').addEventListener('click', () => {
             square.classList.add('blue');
         }
     });
+    count--;    
     document.querySelector('.count').innerHTML--;
+    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
+    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";
 })
 
 document.getElementById('yellowButton').addEventListener('click', () => {
@@ -137,7 +144,10 @@ document.getElementById('yellowButton').addEventListener('click', () => {
             square.classList.add('yellow');
         }
     });
+    count--;    
     document.querySelector('.count').innerHTML--;
+    if(count===0) document.querySelector('.count').innerHTML = "You lost!";  
+    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";      
 })
 
 document.getElementById('pinkButton').addEventListener('click', () => {
@@ -148,7 +158,10 @@ document.getElementById('pinkButton').addEventListener('click', () => {
             square.classList.add('pink');
         }
     });
+    count--;    
     document.querySelector('.count').innerHTML--;
+    if(count===0) document.querySelector('.count').innerHTML = "You lost!";    
+    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";    
 })
 
 document.getElementById('redButton').addEventListener('click', () => {
@@ -159,7 +172,10 @@ document.getElementById('redButton').addEventListener('click', () => {
             square.classList.add('red');
         }
     });
+    count--;    
     document.querySelector('.count').innerHTML--;
+    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
+    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";    
 })
 
 document.getElementById('brownButton').addEventListener('click', () => {
@@ -173,8 +189,10 @@ document.getElementById('brownButton').addEventListener('click', () => {
             square.classList.add('brown');
         }
     });
-    
+    count--;
     document.querySelector('.count').innerHTML--;
+    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
+    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";
 })
 
 document.getElementById('new-game').addEventListener('click', () => paintBoard());
