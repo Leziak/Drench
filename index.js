@@ -99,6 +99,7 @@ let paintBoard = () => {
         grid();
 
     })
+    check(`${squares[0].classList[2]}`);
 }
 
 paintBoard();
