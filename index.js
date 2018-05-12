@@ -2,16 +2,12 @@ let squares = document.querySelectorAll('.square');
 let nodes = Array.prototype.slice.call(squares);
 let players = document.querySelectorAll('.player');
 let count = 30;
-let brown = 1,
-    red = 2,
-    blue = 3,
-    yellow = 4,
-    green = 5,
-    pink = 6;
+let colors = [];
+
 let diceroll = () => {
     return Math.ceil(Math.random() * 6);
 }
-let colors = [];
+
 
 let grid = () => {
     colors = [];
