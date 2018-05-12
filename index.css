@@ -1,0 +1,66 @@
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 580px;
+    margin: 0 auto;
+}
+
+.red {
+    background-color: red;
+    padding: 20px;
+}
+
+.yellow {
+    background-color: yellow;
+    padding: 20px;
+}
+
+.green {
+    background-color: green;
+    padding: 20px;
+}
+
+.pink {
+    background-color: pink;
+    padding: 20px;
+}
+
+.blue {
+    background-color: blue;
+    padding: 20px;
+}
+
+.brown {
+    background-color: brown;
+    padding: 20px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 50px;
+}
+
+.flex button {
+    margin: 0 20px;
+    border-radius: 100%;
+    outline: none;
+}
+
+#new-game {
+    padding: 30px;
+    font-size: 1.3rem;
+}
+
+.menu {
+    display: flex;
+    width: 30%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.count {
+    font-size: 5rem;
+}
