@@ -1,22 +1,33 @@
 let squares = document.querySelectorAll('.square');
 let nodes = Array.prototype.slice.call(squares);
 let players = document.querySelectorAll('.player');
-let count = 30;
 let colors = [];
 
-let diceroll = () => {
+//Randomly assign colors
+const diceroll = () => {
     return Math.ceil(Math.random() * 6);
 }
 
+//Creates an array of arrays
 
-let grid = () => {
+const grid = () => {
     colors = [];
     for (let i = 0; i < nodes.length; i += 14) {
         colors.push(nodes.slice(i, i + 14));
     }
 }
 
-let check = (color) => {
+const win_lose_handler = () => {
+    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
+    else if(colors.every(color=>color.classList.contains('player'))) {
+        document.querySelector('.count').innerHTML = "You won!";
+        count=0;
+    }
+}
+
+//Checking squares for same color
+
+const check = (color) => {
     grid();
     for (let i = 0; i < colors.length; i++) {
         for (let j = 0; j < colors.length - 1; j++) {
@@ -63,12 +74,12 @@ let check = (color) => {
     })
 }
 
-let paintBoard = () => {
+const paintBoard = () => {
+
     squares.forEach((square,i) => {
         square.classList.remove('player');
         squares[0].classList.add('player');
-        count = 30;
-        document.querySelector('.count').innerHTML = '30';
+        document.querySelector('.count').innerHTML = count;
         num = diceroll();
         switch (num) {
             case 1:
@@ -102,6 +113,7 @@ let paintBoard = () => {
     check(`${squares[0].classList[2]}`);
 }
 
+let count = prompt('Please set max number of turns');
 paintBoard();
 
 
@@ -113,10 +125,9 @@ document.getElementById('greenButton').addEventListener('click', () => {
             square.classList.add('green');
         }
     });
-    count--;
+    count ? count-- : null;
     document.querySelector('.count').innerHTML--;
-    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
-    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";
+    win_lose_handler();
 })
 
 document.getElementById('blueButton').addEventListener('click', () => {
@@ -127,10 +138,9 @@ document.getElementById('blueButton').addEventListener('click', () => {
             square.classList.add('blue');
         }
     });
-    count--;    
+    count ? count-- : null;    
     document.querySelector('.count').innerHTML--;
-    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
-    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";
+    win_lose_handler();
 })
 
 document.getElementById('yellowButton').addEventListener('click', () => {
@@ -141,10 +151,9 @@ document.getElementById('yellowButton').addEventListener('click', () => {
             square.classList.add('yellow');
         }
     });
-    count--;    
+    count ? count-- : null;   
     document.querySelector('.count').innerHTML--;
-    if(count===0) document.querySelector('.count').innerHTML = "You lost!";  
-    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";      
+    win_lose_handler();
 })
 
 document.getElementById('pinkButton').addEventListener('click', () => {
@@ -155,10 +164,9 @@ document.getElementById('pinkButton').addEventListener('click', () => {
             square.classList.add('pink');
         }
     });
-    count--;    
+    count ? count-- : null;   
     document.querySelector('.count').innerHTML--;
-    if(count===0) document.querySelector('.count').innerHTML = "You lost!";    
-    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";    
+    win_lose_handler();
 })
 
 document.getElementById('redButton').addEventListener('click', () => {
@@ -169,10 +177,9 @@ document.getElementById('redButton').addEventListener('click', () => {
             square.classList.add('red');
         }
     });
-    count--;    
+    count ? count-- : null;    
     document.querySelector('.count').innerHTML--;
-    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
-    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";    
+    win_lose_handler();
 })
 
 document.getElementById('brownButton').addEventListener('click', () => {
@@ -186,10 +193,12 @@ document.getElementById('brownButton').addEventListener('click', () => {
             square.classList.add('brown');
         }
     });
-    count--;
+    count ? count-- : null;
     document.querySelector('.count').innerHTML--;
-    if(count===0) document.querySelector('.count').innerHTML = "You lost!";
-    else if(colors.every(color=>color.classList.contains('player'))) document.querySelector('.count').innerHTML = "You won!";
+    win_lose_handler();
 })
 
-document.getElementById('new-game').addEventListener('click', () => paintBoard());
+document.getElementById('new-game').addEventListener('click', () => {
+    count = prompt('Please set max number of turns');
+    paintBoard()
+});
